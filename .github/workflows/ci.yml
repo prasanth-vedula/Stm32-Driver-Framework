@@ -1,0 +1,32 @@
+name: STM32 Driver Framework CI
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Verify Folder Structure
+        run: |
+          test -d drivers
+          test -d docs
+          test -d tests
+          test -f README.md
+          test -f LICENSE
+
+      - name: List Project Files
+        run: |
+          find .
+
+      - name: CI Completed
+        run: echo "STM32 Driver Framework verified successfully."
